@@ -24,7 +24,7 @@
 
 ## Overview
 
-Convolutional Neural Networks (CNNs) are vulnerable to adversarial attacks — small, carefully designed input perturbations that cause misclassification while remaining imperceptible to humans. Most existing defenses rely on adversarial training, which is computationally expensive and does not generalize well across different attack types.
+Convolutional Neural Networks (CNNs) are vulnerable to adversarial attacks: small, carefully designed input perturbations that cause misclassification while remaining imperceptible to humans. Most existing defenses rely on adversarial training, which is computationally expensive and does not generalize well across different attack types.
 
 This project investigates an alternative approach: **optimizing activation functions (AFs) using metaheuristic search algorithms** to improve adversarial robustness without requiring adversarial training or data augmentation. Building upon the SARAF framework (Salimi et al., ICMVA 2023), which used Simulated Annealing (SA) for this search, this work systematically compares three additional metaheuristic algorithms:
 
@@ -84,7 +84,7 @@ ILS alternates between local search and perturbation to escape local optima. It 
 VNS systematically changes its neighbourhood structure during the search. When improvement stagnates at k=1 (small neighbourhood), it escalates to k=2, then k=3 (larger neighbourhood), providing a structured escape from local optima. When an improvement is found at any k, the search resets to k=1 to exploit the new region. This structured expansion balances local refinement and broader exploration more intelligently than ILS.
 
 ### Tabu Search (TS)
-Tabu Search augments local search with an explicit memory structure — the **tabu list** — that records recently visited solutions and prevents revisiting them for a fixed number of iterations (tabu tenure T=7). At each iteration, it generates multiple candidate neighbours, selects the best non-tabu candidate, and adds the current state to the tabu list. An **aspiration criterion** allows tabu solutions to be accepted if they surpass the best solution found so far.
+Tabu Search augments local search with an explicit memory structure, the **tabu list**, that records recently visited solutions and prevents revisiting them for a fixed number of iterations (tabu tenure T=7). At each iteration, it generates multiple candidate neighbours, selects the best non-tabu candidate, and adds the current state to the tabu list. An **aspiration criterion** allows tabu solutions to be accepted if they surpass the best solution found so far.
 
 ---
 
@@ -98,18 +98,6 @@ Each candidate solution is encoded as a **chromosome** of length `3 × L`, where
 | AF #1 | L | Index of the first activation function |
 | AF #2 | L | Index of the second activation function |
 
-**Switch operations:**
-
-| Code | Operation | Description |
-|------|-----------|-------------|
-| 0 | `f(x) = g(x)` | Replace with single AF from candidate set |
-| 1 | `f(x) = g(x) + h(x)` | Addition of AF#1 and AF#2 |
-| 2 | `f(x) = g(x) - h(x)` | Subtraction of AF#1 and AF#2 |
-| 3 | `f(x) = g(x) × h(x)` | Multiplication of AF#1 and AF#2 |
-| 4 | `f(x) = g(h(x))` | Functional composition of AF#1 and AF#2 |
-| 5 | `f(x) = 0.25 × g(x)` | Scale AF#1 by 0.25 |
-| 6 | `f(x) = 0.50 × g(x)` | Scale AF#1 by 0.50 |
-| 7 | `f(x) = 0.75 × g(x)` | Scale AF#1 by 0.75 |
 
 **Candidate Activation Functions:**
 `ReLU`, `LeakyReLU`, `Sigmoid`, `SELU`, `CELU`, `Mish`, `GELU`
