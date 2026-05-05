@@ -17,9 +17,9 @@ Activation_Functions = AF_Tools.Activation_Functions_
 operators = AF_Tools.operators_
 operators_p = AF_Tools.operators_p_
 
-EPOCHS = 5
+EPOCHS = 20
 LAYERS = 4
-destination_path = '../save/res18_mnist/res18_mnist_'
+destination_path = '../save/cifar10/cifar10'
 result_file_name = 'VNS_CIFAR_FGSM.csv'
 trace = False
 

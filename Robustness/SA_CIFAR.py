@@ -22,10 +22,10 @@ Activation_Functions = AF_Tools.Activation_Functions_
 operators = AF_Tools.operators_
 operators_p = AF_Tools.operators_p_
 
-EPOCHS = 5
+EPOCHS = 20
 
-LAYERS = 7  # Updated to match AlexNet_CIFAR layers
-destination_path = '../save/res18_mnist/res18_mnist_'
+LAYERS = 4  
+destination_path = '../save/cifar10/cifar10_'
 result_file_name = 'results_AlexNet_CIFAR_FGSM_base.csv'
 trace = False
 
@@ -213,7 +213,7 @@ class robust_simannealer(Annealer):
 
 if __name__ == '__main__':
     torch.autograd.set_detect_anomaly(True)
-    data_loaders_, dataset_sizes_ = get_cifar10_data_32(10000)
+    data_loaders_, dataset_sizes_ = get_cifar10_data_32(512, 256)
 
     atk_eps_s = [("FGSM", 1 / 255)]
     for atk_eps_ in atk_eps_s:
