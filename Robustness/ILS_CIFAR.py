@@ -21,7 +21,7 @@ operators = AF_Tools.operators_
 operators_p = AF_Tools.operators_p_
 
 EPOCHS = 20
-LAYERS = 4
+LAYERS = 7
 destination_path = '../save/cifar10/cifar10_'
 result_file_name = 'ILS_CIFAR_FGSM.csv'
 trace = False
